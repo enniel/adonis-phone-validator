@@ -1,0 +1,36 @@
+{
+  "name": "adonis-phone-validator",
+  "version": "0.0.1",
+  "description": "Adonis phone validator",
+  "main": "src/Validations.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "lint": "standard src/**/*.js providers/*.js test/*.js"
+  },
+  "author": "Evgeny Razumov (enniel)",
+  "license": "MIT",
+  "dependencies": {
+    "libphonenumber-js": "^0.4.7"
+  },
+  "devDependencies": {
+    "adonis-fold": "^3.0.3",
+    "adonis-validation-provider": "^3.0.5",
+    "indicative": "^2.2.1",
+    "standard": "^10.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/enniel/adonis-phone-validator.git"
+  },
+  "keywords": [
+    "phone",
+    "validation",
+    "adonis"
+  ],
+  "bugs": {
+    "url": "https://github.com/enniel/adonis-phone-validator/issues"
+  },
+  "homepage": "https://github.com/enniel/adonis-phone-validator#readme"
+}
