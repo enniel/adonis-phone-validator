@@ -16,7 +16,7 @@ const rules = {
 }
 
 const data = {
-  phone: '+7 (915) 999 99 99'
+  phone: '+7 (800) 555-35-35'
 }
 
 indicative
