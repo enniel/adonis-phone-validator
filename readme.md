@@ -1,3 +1,0 @@
-# Adonis Phone Validator
-
-## Coming soon...
