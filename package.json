@@ -1,6 +1,6 @@
 {
   "name": "adonis-phone-validator",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Adonis phone validator",
   "main": "src/Validations.js",
   "directories": {
