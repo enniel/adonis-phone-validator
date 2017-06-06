@@ -7,6 +7,8 @@
  */
 
 const libPhoneNumber = require('libphonenumber-js')
+const Modes = require('indicative/src/Modes')
+const Raw = require('indicative/src/Raw')
 
 /**
  * @module Validations
@@ -14,6 +16,19 @@ const libPhoneNumber = require('libphonenumber-js')
  * @type {Object}
  */
 let Validations = exports = module.exports = {}
+
+/**
+ * @description figures out whether value can be skipped
+ * or not from validation, as non-existing values
+ * should be validated using required.
+ * @method skippable
+ * @param  {Mixed}  value
+ * @return {Boolean}
+ * @private
+ */
+const skippable = function (value) {
+  return Modes.get() === 'strict' ? typeof value === 'undefined' : !Raw.existy(value)
+}
 
 /**
  * @description validate phone number.
@@ -29,12 +44,17 @@ let Validations = exports = module.exports = {}
 Validations.phone = function (data, field, message, args, get) {
   return new Promise((resolve, reject) => {
     const fieldValue = get(data, field)
-    if (!fieldValue) {
-      return resolve('validation skipped')
+    if (skippable(fieldValue)) {
+      resolve('validation skipped')
+      return
     }
-    const isValid = libPhoneNumber.isValidNumber(fieldValue, ...args)
+    let country = 'US'
+    if (args[0]) {
+      country = args[0]
+    }
+    const isValid = libPhoneNumber.isValidNumber(fieldValue, country)
     if (isValid) {
-      resolve('valid')
+      resolve('validation passed')
     } else {
       reject(message)
     }
