@@ -7,6 +7,13 @@
  */
 
 const libPhoneNumber = require('libphonenumber-js')
+const _ = require('lodash')
+
+const FORMATS = {
+  '!i': 'International',
+  '!n': 'National',
+  '!ip': 'International_plaintext'
+}
 
 /**
  * @module Sanitizors
@@ -26,7 +33,7 @@ let Sanitizors = exports = module.exports = {}
 Sanitizors.parsePhone = function (value, args) {
   let country = 'US'
 
-  if (args instanceof Array) {
+  if (args instanceof Array && args.length) {
     country = args[0]
   }
 
@@ -53,18 +60,20 @@ Sanitizors.formatPhone = function (value, args) {
     format: 'International'
   }
 
-  if (args instanceof Array) {
-    if (args[0]) {
-      options.country = args[0]
+  if (args instanceof Array && args.length) {
+    let country = 'US'
+    let format = '!i'
+    if (_.includes(_.keys(FORMATS), args[0])) {
+      format = args[0]
+    } else if (args[1]) {
+      country = args[0]
+      format = args[1]
+    } else {
+      country = args[0]
     }
-    if (args[1] === '!i') {
-      options.format = 'International'
-    }
-    if (args[1] === '!n') {
-      options.format = 'National'
-    }
-    if (args[1] === '!ip') {
-      options.format = 'International_plaintext'
+    options.country = country
+    if (_.includes(_.keys(FORMATS), format)) {
+      options.format = FORMATS[format]
     }
   }
 

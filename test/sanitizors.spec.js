@@ -47,4 +47,19 @@ describe('Validations', function () {
     const sanitized = Sanitizors.formatPhone('8005553535', ['RU', '!ip'])
     expect(sanitized).to.equal('+78005553535')
   })
+
+  it('should format phone number without country code and with international format', function () {
+    const sanitized = Sanitizors.formatPhone('2133734253', ['!i'])
+    expect(sanitized).to.equal('+1 213 373 4253')
+  })
+
+  it('should format phone number without country code and national format', function () {
+    const sanitized = Sanitizors.formatPhone('2133734253', ['!n'])
+    expect(sanitized).to.equal('(213) 373-4253')
+  })
+
+  it('should format phone number with country code and international plaintext (E.164) format', function () {
+    const sanitized = Sanitizors.formatPhone('2133734253', ['!ip'])
+    expect(sanitized).to.equal('+12133734253')
+  })
 })
