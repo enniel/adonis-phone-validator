@@ -14,7 +14,8 @@
   "license": "MIT",
   "dependencies": {
     "indicative": "^2.2.1",
-    "libphonenumber-js": "^0.4.12"
+    "libphonenumber-js": "^0.4.13",
+    "lodash": "^4.17.4"
   },
   "devDependencies": {
     "adonis-fold": "^3.0.3",
@@ -22,7 +23,6 @@
     "chai": "^4.0.2",
     "co-mocha": "^1.2.0",
     "mocha": "^3.4.2",
-    "lodash": "^4.17.4",
     "standard": "^10.0.2"
   },
   "standard": {
