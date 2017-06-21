@@ -7,8 +7,17 @@
     "test": "test"
   },
   "scripts": {
-    "test": "npm run lint && _mocha spec test",
-    "lint": "standard src/*.js providers/*.js test/*.js"
+    "test": "_mocha test",
+    "lint": "standard",
+    "lint:fix": "standard --fix",
+    "precommit": "npm run test && lint-staged",
+    "prepush": "npm run test && lint-staged"
+  },
+  "lint-staged": {
+    "*.js": [
+      "npm run lint:fix",
+      "git add"
+    ]
   },
   "author": "Evgeny Razumov (enniel)",
   "license": "MIT",
@@ -22,6 +31,8 @@
     "adonis-validation-provider": "^3.0.5",
     "chai": "^4.0.2",
     "co-mocha": "^1.2.0",
+    "husky": "^0.13.4",
+    "lint-staged": "^4.0.0",
     "mocha": "^3.4.2",
     "standard": "^10.0.2"
   },
