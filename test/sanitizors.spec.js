@@ -12,7 +12,7 @@ const expect = chai.expect
 
 require('co-mocha')
 
-describe('Validations', function () {
+describe('Sanitizers', function () {
   it('should parse phone number', function () {
     const sanitized = Sanitizors.parsePhone('+1-213-373-4253')
     expect(sanitized).to.equal('2133734253')
