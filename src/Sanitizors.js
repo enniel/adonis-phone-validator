@@ -43,7 +43,7 @@ Sanitizors.parsePhone = function (value, args) {
 
   const { phone } = libPhoneNumber.parse(value, country)
 
-  return phone
+  return phone || value
 }
 
 /**

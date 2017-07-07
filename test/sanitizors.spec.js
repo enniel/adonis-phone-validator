@@ -62,4 +62,9 @@ describe('Validations', function () {
     const sanitized = Sanitizors.formatPhone('2133734253', ['!ip'])
     expect(sanitized).to.equal('+12133734253')
   })
+
+  it('should return value if parsed value is not phone', function () {
+    const sanitized = Sanitizors.parsePhone('foo')
+    expect(sanitized).to.equal('foo')
+  })
 })
