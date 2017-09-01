@@ -6,24 +6,9 @@
  * MIT Licensed
  */
 
-const libPhoneNumber = require('libphonenumber-js')
 const Modes = require('indicative/src/Modes')
 const Raw = require('indicative/src/Raw')
-const _ = require('lodash')
-
-const TYPES = [
-  'premium_rate',
-  'toll_free',
-  'shared_cost',
-  'voip',
-  'personal_number',
-  'pager',
-  'uan',
-  'voicemail',
-  'fixed_line_or_mobile',
-  'fixed_line',
-  'mobile'
-]
+const RawValidations = require('./RawValidations')
 
 /**
  * @module Validations
@@ -63,27 +48,8 @@ Validations.phone = function (data, field, message, args, get) {
       resolve('validation skipped')
       return
     }
-    let country = 'US'
-    let type = null
-    if (args instanceof Array && args.length) {
-      if (_.includes(TYPES, args[0])) {
-        type = args[0]
-      } else if (args[1]) {
-        country = args[0]
-        type = args[1]
-      } else {
-        country = args[0]
-      }
-    }
-
-    const isValid = libPhoneNumber.isValidNumber(fieldValue, country)
+    const isValid = RawValidations.phone(fieldValue, ...args)
     if (isValid) {
-      if (type && country) {
-        if (_.snakeCase(libPhoneNumber.getNumberType(fieldValue, country)) === type) {
-          return resolve('validation passed')
-        }
-        return reject(message)
-      }
       resolve('validation passed')
     } else {
       reject(message)
