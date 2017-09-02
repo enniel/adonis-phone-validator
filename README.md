@@ -15,7 +15,7 @@ or
 $ yarn add adonis-phone-validator
 ```
 
-2. Register providers inside the your bootstrap/app.js file.
+2. Register providers inside the your start/app.js file.
 
 ```js
 const providers = [
@@ -36,7 +36,7 @@ const data = {
   phone: '+7 (800) 555-35-35'
 }
 
-yield Validator.validate(data, rules)
+await Validator.validate(data, rules)
 
 // without country code and with phone type (default country code: US)
 const rules = {
@@ -47,7 +47,7 @@ const data = {
   phone: '+1-202-555-0120'
 }
 
-yield Validator.validate(data, rules)
+await Validator.validate(data, rules)
 
 // without country code and phone type (default country code: US)
 const rules = {
@@ -58,7 +58,7 @@ const data = {
   phone: '+1-202-555-0120'
 }
 
-yield Validator.validate(data, rules)
+await Validator.validate(data, rules)
 ```
 
 Supported types:
@@ -88,7 +88,8 @@ const data = {
   phone: '+7 (800) 555-35-35'
 }
 
-const sanitizedData = Validator.sanitize(data, rules) // 8005553535
+const sanitized = Validator.sanitize(data, rules) // 8005553535
+
 // format phone to internation format
 const rules = {
   phone: 'format_phone:RU,!i'
@@ -99,6 +100,7 @@ const data = {
 }
 
 const sanitized = Validator.sanitize(data, rules) // +7 800 555 35 35
+
 // format phone to national format
 const rules = {
   phone: 'format_phone:RU,!n'
@@ -109,6 +111,7 @@ const data = {
 }
 
 const sanitized = Validator.sanitize(data, rules) // 800 555-35-35
+
 // format phone to international plaintext (E.164) format
 const rules = {
   phone: 'format_phone:RU,!ip'
@@ -120,7 +123,6 @@ const data = {
 
 const sanitized = Validator.sanitize(data, rules) // +78005553535
 ```
-
 
 ## Credits
 
