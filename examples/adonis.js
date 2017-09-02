@@ -6,15 +6,17 @@
  * MIT Licensed
  */
 
-const fold = require('adonis-fold')
+const { registrar, ioc } = require('@adonisjs/fold')
 const path = require('path')
 
-fold.Registrar.register([
-  'adonis-validation-provider/providers/ValidatorProvider',
-  path.join(__dirname, '../providers/PhoneValidatorProvider')
-])
+registrar
+  .providers([
+    '@adonisjs/validator/providers/ValidatorProvider',
+    path.join(__dirname, '../providers/PhoneValidatorProvider')
+  ])
+  .register()
 
-const Validator = fold.Ioc.use('Adonis/Addons/Validator')
+const Validator = ioc.use('Adonis/Addons/Validator')
 
 const rules = {
   phone: 'phone:RU'

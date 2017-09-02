@@ -10,8 +10,6 @@ const Sanitizors = require('../src/Sanitizors')
 const chai = require('chai')
 const expect = chai.expect
 
-require('co-mocha')
-
 describe('Sanitizers', function () {
   it('should parse phone number', function () {
     const sanitized = Sanitizors.parsePhone('+1-213-373-4253')

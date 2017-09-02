@@ -22,15 +22,14 @@
   "author": "Evgeny Razumov (enniel)",
   "license": "MIT",
   "dependencies": {
-    "indicative": "^2.2.1",
+    "indicative": "^3.0.0",
     "libphonenumber-js": "^0.4.13",
     "lodash": "^4.17.4"
   },
   "devDependencies": {
-    "adonis-fold": "^3.0.3",
-    "adonis-validation-provider": "^3.0.5",
+    "@adonisjs/fold": "^4.0.2",
+    "@adonisjs/validator": "^4.0.3",
     "chai": "^4.0.2",
-    "co-mocha": "^1.2.0",
     "husky": "^0.13.4",
     "lint-staged": "^4.0.0",
     "mocha": "^3.4.2",
